@@ -12,13 +12,10 @@ export default class Cart {
     }
 
     calculateTotal(): number {
-        let result: number = 0;
-        this._items.forEach((item) => {
-            result += item.price
-        })
-        return result;
+        return this._items.reduce((acc: number, item: Buyable): number => 
+         acc + item.price, 0)
     }
-
+    
     calculateDiscount(discount: number): number {
         const result = this.calculateTotal();
         return result - (result * (discount / 100));
